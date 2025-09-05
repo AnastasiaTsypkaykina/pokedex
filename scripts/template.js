@@ -34,7 +34,7 @@ function currentPokemonTemp(pokemon, i, species) {
                 <div class="cardType">
                     <div class="${pokemon.types[0].type.name}-badge pokeType">${pokemon.types[0].type.name}</div>
                     <div class="currentCardBg">
-                        <img id="currentCardBg" src="src/img/ballCard.png"/>
+                        <img id="currentCardBg" src="./img/ballCard.png"/>
                     </div>
                 </div>
 
@@ -42,19 +42,10 @@ function currentPokemonTemp(pokemon, i, species) {
 
                 <div class="pokeImg">
                     <img src="${pokemon.sprites.other["official-artwork"]["front_default"]}" />
-                </div>
-
-                <div class="navBtns">
-                    <div onclick="openPokemonOverlay(${pokemon.id-2})">
-                        <img src="src/img/navBtn.png">
-                    </div>
-                    <div onclick="openPokemonOverlay(${pokemon.id})">
-                        <img src="src/img/navBtn.png" style="transform: scaleX(-1)">
-                    </div>
-                </div>
+                </div>            
 
                 <div class="typeImg">
-                    <img src="src/img/types/type_${pokemon.types[0].type.name}.png" />
+                    <img src="./img/types/type_${pokemon.types[0].type.name}.png" />
                 </div>
 
                 <div class="infoBox">

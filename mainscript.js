@@ -22,7 +22,7 @@ async function init(load) {
     let pokemons = await fetchAllPokemons();
     allFetchedPokemons = await fetchAllPokemons(true);
     await loadPokemonArray(pokemons);
-    showLoadAnimation(false);
+    //showLoadAnimation(false);
     isLoading = false;
 }
 
@@ -66,7 +66,7 @@ async function loadPokemonArray(pokemons) {
 async function renderAllPokemons(id) {
     content.innerHTML += pokeCardTemp(allPokemons[id], id);
     renderTypes(id);
-    showLoadAnimation(true);
+    //showLoadAnimation(true);
     isLoaded = true;
 }
 
@@ -85,19 +85,6 @@ function renderTypes(id) {
     changeCardColor(id, 0);
 }
 
-function showLoadAnimation(bool) {
-    let loadAnimation = document.getElementById('loadAnimation');
-    let mainContainer = document.querySelector('.mainContainer');
-    if (bool) {
-        loadAnimation.classList.remove('d-none');
-        //document.body.classList.add("overflow-hidden");
-    }
-    if (!bool) {
-        loadAnimation.classList.add('d-none');
-        //document.body.classList.remove("overflow-hidden");
-        content.style.paddingRight = "0px"
-    }
-}
 
 async function showMoves(id) {
     let infos = document.getElementById('infos');
@@ -106,6 +93,15 @@ async function showMoves(id) {
     infos.innerHTML = "";
     infos.innerHTML = pokeInfoMovesTemp(pokemon);
     renderMoves(id, pokemon);
+}
+
+function renderMoves(id, pokemon) {
+    let allMovesBox = document.getElementById("allMoves");
+
+    for (let i = 0; i < pokemon.moves.length && i < 40; i++) {
+        const element = pokemon.moves[i].move.name;
+        allMovesBox.innerHTML += `<div class="moveBadges">${element}</div>`;
+    }
 }
 
 function changeCardColor(id, i) {
@@ -120,4 +116,28 @@ function changeBadgeColor(id, i) {
     let pokemon = allPokemons[id];
     let badge = document.getElementById(`badge${pokemon.name}${i}`);
     badge.classList.add(`${type}-badge`);
+}
+
+function closeOverlay() {
+    const overlay = document.getElementById("overlay");
+    document.body.classList.remove("overflow-hidden");
+    overlay.classList.add("d-none");
+}
+
+function dontClose(event) {
+    event.stopPropagation();
+}
+
+async function openPokemonOverlay(id, bool) {
+    const overlay = document.getElementById("overlay");
+    document.body.classList.add("overflow-hidden");
+    try {
+        let pokemon = await fetchPokemon(allFetchedPokemons[id].url);
+        let species = await loadSpeciesJson(id);
+        overlay.classList.remove("d-none");
+        overlay.innerHTML = "";
+        overlay.innerHTML = currentPokemonTemp(pokemon, id, species);
+        changeOverlayColor(id, pokemon);
+        showChartStats(pokemon);
+    } catch (e) {}
 }
