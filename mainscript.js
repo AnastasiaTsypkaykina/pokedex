@@ -63,10 +63,61 @@ async function loadPokemonArray(pokemons) {
     }
 }
 
-
 async function renderAllPokemons(id) {
     content.innerHTML += pokeCardTemp(allPokemons[id], id);
     renderTypes(id);
     showLoadAnimation(true);
     isLoaded = true;
+}
+
+async function showStats(id) {
+    let infos = document.getElementById('infos');
+    infos.innerHTML = "";
+    openPokemonOverlay(id);
+}
+
+function renderTypes(id) {
+    for (let i = 0; i < allPokemons[id].types.length; i++) {
+        let pokeTypes = document.getElementById(`pokeTypes${id}`);
+        pokeTypes.innerHTML += pokeTypeTemp(allPokemons[id], i);
+        changeBadgeColor(id, i);
+    }
+    changeCardColor(id, 0);
+}
+
+function showLoadAnimation(bool) {
+    let loadAnimation = document.getElementById('loadAnimation');
+    let mainContainer = document.querySelector('.mainContainer');
+    if (bool) {
+        loadAnimation.classList.remove('d-none');
+        //document.body.classList.add("overflow-hidden");
+    }
+    if (!bool) {
+        loadAnimation.classList.add('d-none');
+        //document.body.classList.remove("overflow-hidden");
+        content.style.paddingRight = "0px"
+    }
+}
+
+async function showMoves(id) {
+    let infos = document.getElementById('infos');
+    let pokemon = await fetchPokemon(allFetchedPokemons[id].url);
+
+    infos.innerHTML = "";
+    infos.innerHTML = pokeInfoMovesTemp(pokemon);
+    renderMoves(id, pokemon);
+}
+
+function changeCardColor(id, i) {
+    let type = allPokemons[id].types[i].type.name;
+    let pokeCard = document.getElementById(`pokeCard${id}`);
+    pokeCard.classList.add(`${type}-box`);
+}
+
+
+function changeBadgeColor(id, i) {
+    let type = allPokemons[id].types[i].type.name;
+    let pokemon = allPokemons[id];
+    let badge = document.getElementById(`badge${pokemon.name}${i}`);
+    badge.classList.add(`${type}-badge`);
 }
