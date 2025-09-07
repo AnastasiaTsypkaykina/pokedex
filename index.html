@@ -13,6 +13,23 @@
     />
   </head>
   <body onload="init()">
+    <div id="loadAnimation" class="loadAnim d-none">
+        <img src="./img/ballCard.png" />
+    </div>
+    <div class="maincontainer">
+        <header>
+            <div class="logo">
+                <img src="./img/ball-colorized.png" />
+                <span><a href="" target="_self">Pokédex</a></span>
+            </div>
+            <div class="searchBox">
+                <input type="text" id="search" placeholder="Search..." onkeyup="filterPokemons()" />
+                <button disabled>
+            <img src="./img/search.png" />
+          </button>
+            </div>
+        </header>
+
     <div id="content"></div>
     <div
       id="overlay"

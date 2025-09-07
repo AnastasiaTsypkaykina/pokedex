@@ -22,7 +22,7 @@ async function init(load) {
     let pokemons = await fetchAllPokemons();
     allFetchedPokemons = await fetchAllPokemons(true);
     await loadPokemonArray(pokemons);
-    //showLoadAnimation(false);
+    showLoadAnimation(false);
     isLoading = false;
 }
 
@@ -66,7 +66,7 @@ async function loadPokemonArray(pokemons) {
 async function renderAllPokemons(id) {
     content.innerHTML += pokeCardTemp(allPokemons[id], id);
     renderTypes(id);
-    //showLoadAnimation(true);
+    showLoadAnimation(true);
     isLoaded = true;
 }
 
@@ -154,3 +154,17 @@ window.onscroll = async() => {
         await init(40);
     }
 };
+
+function showLoadAnimation(bool) {
+    let loadAnimation = document.getElementById('loadAnimation');
+    let mainContainer = document.querySelector('.mainContainer');
+    if (bool) {
+        loadAnimation.classList.remove('d-none');
+        //document.body.classList.add("overflow-hidden");
+    }
+    if (!bool) {
+        loadAnimation.classList.add('d-none');
+        //document.body.classList.remove("overflow-hidden");
+        content.style.paddingRight = "0px"
+    }
+}

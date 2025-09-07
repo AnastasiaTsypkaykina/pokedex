@@ -22,15 +22,15 @@ function showChartStats(pokemon) {
                     pokemon.stats[5]["base_stat"]
                 ],
                 backgroundColor: [
-                    "#47dc6c",
-                    "#eB1F23",
+                    "#d8690eff",
+                    "#6bf85bff",
                     "#86D2F5",
-                    "#c61843",
-                    "#3a6ee7",
-                    "#3c3c16",
+                    "#5a0016ff",
+                    "#a7099aff",
+                    "#290355ff",
                 ],
                 borderWidth: 0,
-                borderRadius: 22,
+                borderRadius: 50,
             }, ],
         },
         options: {
