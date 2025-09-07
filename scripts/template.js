@@ -41,7 +41,9 @@ function currentPokemonTemp(pokemon, i, species) {
                 <div class="pokeTypes" id="pokeTypes${i}"></div>
 
                 <div class="pokeImg">
+                    <img class="prev-arrow" src="./img/arrow-next.svg" onclick="openPokemonOverlay(${pokemon.id-2})" />
                     <img src="${pokemon.sprites.other["official-artwork"]["front_default"]}" />
+                    <img class="next-arrow"src="./img/arrow-next.svg" onclick="openPokemonOverlay(${pokemon.id})" />
                 </div>            
 
                 <div class="typeImg">

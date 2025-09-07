@@ -22,6 +22,15 @@ body {
   display: none !important;
 }
 
+.next-arrow {
+    height: 90px;
+    
+}
+.prev-arrow {
+    height: 90px;
+    transform: rotate(180deg) !important
+}
+
 .overflow-hidden {
   overflow: hidden;
   padding-right: 7px;
