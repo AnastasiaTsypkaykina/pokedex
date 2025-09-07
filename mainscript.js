@@ -118,6 +118,13 @@ function changeBadgeColor(id, i) {
     badge.classList.add(`${type}-badge`);
 }
 
+function changeOverlayColor(id, pokemon) {
+    let type = pokemon.types[0].type.name;
+    let currentBox = document.getElementById("currentBox");
+    currentBox.classList.add(`${type}-box`)
+}
+
+
 function closeOverlay() {
     const overlay = document.getElementById("overlay");
     document.body.classList.remove("overflow-hidden");
@@ -141,3 +148,9 @@ async function openPokemonOverlay(id, bool) {
         showChartStats(pokemon);
     } catch (e) {}
 }
+
+window.onscroll = async() => {
+    if (((window.innerHeight + window.scrollY - 95) >= document.body.offsetHeight) && !isLoading) {
+        await init(40);
+    }
+};
