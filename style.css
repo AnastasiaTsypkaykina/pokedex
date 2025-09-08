@@ -148,7 +148,7 @@ header button {
   position: absolute;
   margin-top: 35px;
   padding: 20px 10px;
-  font-size: 12px;
+  font-size: 16px;
   z-index: 1;
 }
 .pokeCard .pokeTypes .pokeType {
@@ -198,8 +198,8 @@ header button {
 }
 .selectedPokemonOverlay .currentBox {
   position: relative;
-  width: 450px;
-  height: 650px;
+  width: 500px;
+  height: 700px;
   border-radius: 20px 54px 23px 0px;
   font-family: "pokeBit";
 }
@@ -269,7 +269,7 @@ header button {
   position: absolute;
   padding: 5px 10px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 16px;
   z-index: 10;
 }
 .selectedPokemonOverlay .currentBox .cardHeader {
@@ -354,7 +354,7 @@ header button {
 }
 .selectedPokemonOverlay .currentBox .infoBox .iHeader span {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 16px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -377,10 +377,8 @@ header button {
 .selectedPokemonOverlay .currentBox .infoBox #infos p {
   display: flex;
   flex-wrap: wrap;
-  font-size: 10px;
-  padding: 20px 0;
+  font-size: 16px;
   color: #ddd;
-  min-height: 80px;
   letter-spacing: 1px;
   text-align: justify;
   overflow-y: auto;
@@ -401,9 +399,7 @@ header button {
   margin-top: 5px;
   text-shadow: 1px 1px 3px #fff;
 }
-.selectedPokemonOverlay .currentBox .infoBox #infos canvas {
-  margin-top: 10px;
-}
+
 
 :root {
     --bug-bg: #68c47c;
@@ -698,5 +694,9 @@ header button {
     .prev-arrow {
         height: 50px;
 
+    }
+    .pokemonChart {
+        height: 127px !important;
+        width: 250px !important;
     }
 }

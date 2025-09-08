@@ -60,7 +60,7 @@ function currentPokemonTemp(pokemon, i, species) {
                         <span>Description</span>
                         <p> ${species["flavor_text_entries"][3].flavor_text}</p>
                         <span>Stats</span>
-                        <canvas id="pokemonStats" width="200px" height="100px"></canvas>
+                        <canvas class="pokemonChart" id="pokemonStats" width="200px" height="100px"></canvas>
 
                     </div>
 
@@ -76,7 +76,7 @@ function pokeInfoStatsTemp(species) {
         <span>Description</span>
             <p> ${species["flavor_text_entries"][3].flavor_text}</p>
             <span>Stats</span>
-        <canvas id="pokemonStats" width="200px" height="100px"></canvas>
+        <canvas class="pokemonChart" id="pokemonStats" width="200px" height="100px"></canvas>
     `;
 }
 
