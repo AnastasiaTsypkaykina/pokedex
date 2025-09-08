@@ -1,11 +1,4 @@
-@font-face {
-  font-family: "poke";
-  src: url(src/fonts/Pokemon\ Solid.ttf);
-}
-@font-face {
-  font-family: "pokeBit";
-  src: url(src/fonts/pkmn.ttf);
-}
+
 * {
   padding: 0;
   margin: 0;
@@ -675,4 +668,35 @@ header button {
     opacity: 1;
     scale: 1;
   }
-}/*# sourceMappingURL=loadAnim.css.map */
+}
+
+/* responsive */
+
+@media (max-width: 450px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+    }
+    header .logo {
+        font-size: 25px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .selectedPokemonOverlay .currentBox {
+        width: 300px;
+    }
+
+    .next-arrow {
+        height: 50px;
+
+    }
+    .prev-arrow {
+        height: 50px;
+
+    }
+}

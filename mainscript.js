@@ -129,16 +129,30 @@ function dontClose(event) {
 
 async function openPokemonOverlay(id, bool) {
     const overlay = document.getElementById("overlay");
-    document.body.classList.add("overflow-hidden");
-    try {
-        let pokemon = await fetchPokemon(allFetchedPokemons[id].url);
-        let species = await loadSpeciesJson(id);
-        overlay.classList.remove("d-none");
-        overlay.innerHTML = "";
-        overlay.innerHTML = currentPokemonTemp(pokemon, id, species);
-        changeOverlayColor(id, pokemon);
-        showChartStats(pokemon);
-    } catch (e) {}
+    document.body.classList.add("overflow-hidden");    
+    let pokemon = await fetchPokemon(allFetchedPokemons[id].url);
+    let species = await loadSpeciesJson(id);
+    overlay.classList.remove("d-none");
+    overlay.innerHTML = "";
+    overlay.innerHTML = currentPokemonTemp(pokemon, id, species);
+    changeOverlayColor(id, pokemon);
+    showChartStats(pokemon);
+    
+}
+
+function openNext(id) {
+    openPokemonOverlay(id);
+
+}
+
+function openPrev(id) {
+    if (id==1) {
+        openPokemonOverlay(allPokemons.length);
+    }
+    else {
+        openPokemonOverlay(id-2);
+    }
+
 }
 
 window.onscroll = async() => {
@@ -158,5 +172,61 @@ function showLoadAnimation(bool) {
         loadAnimation.classList.add('d-none');
         //document.body.classList.remove("overflow-hidden");
         content.style.paddingRight = "0px"
+    }
+}
+
+function searchPokemon(search) {
+    search = search.toLowerCase();
+    foundPokes = [];
+    isLoading = true;
+    for (let i = 0; i < allFetchedPokemons.length; i++) {
+        const element = allFetchedPokemons[i];
+        if (element.name.includes(search)) {
+            foundPokes.push(element);
+        } else {
+            infoIfNotFound();
+        };
+    }
+}
+
+function infoIfNotFound() {
+    let contentRef = document.getElementById("content");
+    contentRef.innerHTML="";
+    contentRef.innerHTML= `<p>No pokemon found!</p>`
+}
+
+function infoNotRightCriteria() {
+    let contentRef = document.getElementById("content");
+    contentRef.innerHTML="";
+    contentRef.innerHTML= `<p> Write more characters to search, at least 3 characters needed!</p>`
+} 
+
+async function filterPokemons() {
+    let search = document.getElementById('search').value;
+    if (search.length < 3) {        
+        infoNotRightCriteria();        
+    } else {
+    searchPokemon(search);
+    await loadPokemonSearch(foundPokes);
+    }
+}
+
+async function loadPokemonSearch(pokemons) {
+    foundPokes = [];
+    for (let i = 0; i < 10; i++) {
+        const pokemon = pokemons[i];
+        try {
+            let response = await fetch(pokemon.url);
+            let respJson = await response.json();
+            foundPokes.push(respJson);
+            renderSearchPokemon(foundPokes);
+        } catch (e) {}
+    }
+}
+
+function renderSearchPokemon(pokemon) {
+    content.innerHTML = "";
+    for (let i = 0; i < pokemon.length; i++) {
+        content.innerHTML += pokeCardTemp(pokemon[i], i);
     }
 }
