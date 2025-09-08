@@ -15,7 +15,6 @@ function resetVariables() {
     content.innerHTML = "";
 }
 
-
 async function init(load) {
     isLoading = true;
     maxPokemon += load || 0; // Wenn load = null -> 0
@@ -25,7 +24,6 @@ async function init(load) {
     showLoadAnimation(false);
     isLoading = false;
 }
-
 
 async function fetchAllPokemons(all) {
     let urlAtt;
@@ -38,7 +36,6 @@ async function fetchAllPokemons(all) {
     return await respJson.results;
 }
 
-
 async function fetchPokemon(url) {
     const URL = url;
     let response = await fetch(URL);
@@ -46,12 +43,10 @@ async function fetchPokemon(url) {
     return respJson;
 }
 
-
 async function loadSpeciesJson(id) {
     let species = fetchPokemon(`https://pokeapi.co/api/v2/pokemon-species/${id+1}/`);
     return species;
 }
-
 
 async function loadPokemonArray(pokemons) {
     for (let i = allPokemons.length; i < pokemons.length; i++) {
@@ -85,7 +80,6 @@ function renderTypes(id) {
     changeCardColor(id, 0);
 }
 
-
 async function showMoves(id) {
     let infos = document.getElementById('infos');
     let pokemon = await fetchPokemon(allFetchedPokemons[id].url);
@@ -110,7 +104,6 @@ function changeCardColor(id, i) {
     pokeCard.classList.add(`${type}-box`);
 }
 
-
 function changeBadgeColor(id, i) {
     let type = allPokemons[id].types[i].type.name;
     let pokemon = allPokemons[id];
@@ -123,7 +116,6 @@ function changeOverlayColor(id, pokemon) {
     let currentBox = document.getElementById("currentBox");
     currentBox.classList.add(`${type}-box`)
 }
-
 
 function closeOverlay() {
     const overlay = document.getElementById("overlay");
